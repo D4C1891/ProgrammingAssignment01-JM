@@ -30,6 +30,11 @@ public class HardwareTicket extends Ticket {
     @Override
     public int urgencyScore() {
         // TODO #2
-        return -1;
+        int score = priority*10 + daysOpen*2
+        + (labCritical ? 20 : 0)
+        + Math.min(affectedUsers, 30)
+        + (deviceType.equalsIgnoreCase("Printer") ? 5 : 0);
+
+        return score;
     }
 }
